@@ -1,0 +1,263 @@
+:root {
+    --bg: black;
+    --color:#FFBF00;
+  
+    --red: red;
+    --darkred: darkred;
+    --green: green;
+    --darkgreen: darkgreen;
+    --green_transparent_3: rgba(0, 128, 0, 0.3);
+    --red_transparent_3 : rgba(255, 0, 0, 0.3);
+  
+    --padding: 10px;
+    --padding_small: 5px;
+    --padding_big: 20px;
+    --radius:10px;
+}
+
+* {   
+    box-sizing: border-box;
+}
+  
+body{	
+    background-color:var(--bg);
+    color:var(--color);
+    font-family: 'Courier New';
+    font-size: 14px;
+    line-height: 16px;  
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, p, address {
+    margin: 0px;
+}
+h1 {
+	font-size: 30px;
+	line-height: 20px;
+}
+h2 {
+	font-size: 24px;
+	line-height: 20px;
+}
+h6 {
+    font-size: 12px;
+    line-height: 8px;
+  }
+ul{
+	margin:0px;
+}
+ul li{
+	list-style-type: circle;
+    margin-top: var(--padding_small);
+}
+.long_text{
+    word-wrap: break-word; /* Ensures long words break */
+    overflow-wrap: break-word; /* Alternative for better compatibility */
+    white-space: normal; /* Allows wrapping */
+}
+
+.blockchain_title{
+    text-align: center;
+    margin: var(--padding_big) 0px;
+}
+.blockchain_left, .blockchain_right{
+    display: inline-block;
+    vertical-align: top;
+    padding: var(--padding);
+}
+.blockchain_left{
+    width: 40%;
+}
+.blockchain_right{
+    width: 60%;
+    overflow: auto;
+    height: calc(100vh - 100px);
+}
+.blockchain_box{
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    margin-bottom: var(--padding);
+}
+.blockchain_box h2{
+    margin-bottom: var(--padding);
+    padding: var(--padding) 0px;
+    border-bottom: solid 1px var(--color);
+}
+
+.blockchain_transaction_container{
+    padding: var(--padding);
+    border: solid 1px var(--color);
+    margin-bottom: var(--padding);
+}
+.blockchain_enter_error{
+    background-color: var(--red_transparent_3);
+    color: var(--red);
+    border: solid 1px var(--red);
+    border-radius: var(--radius);
+    text-align: center;
+    padding: var(--padding);
+}
+.blockchain_transaction_title{
+    padding-bottom: var(--padding_small);
+    margin-bottom: var(--padding_small);
+    border-bottom: solid 1px var(--color);
+}
+
+footer{
+    padding: var(--padding);
+    text-align: center;
+}
+
+/* INPUTS, BUTTONS */
+input, textarea{
+    border-radius: var(--radius);
+    padding: var(--padding);
+    font-size: 14px;
+    line-height: 14px;
+    height: 25px;
+    width: 100%;
+    background-color: transparent;
+}
+.blockchain_input{
+    border: solid 1px var(--color);
+    color: var(--color);
+    margin-bottom: var(--padding);
+}
+
+.blockchain_button{
+    text-align: center;
+    font-size: 12px;
+    line-height: 20px;
+    padding: 0px var(--padding);
+    margin-bottom: var(--padding);
+    border-radius: var(--radius);
+    height: 30px;
+    width: 100%;
+    cursor: pointer;
+}
+.blockchain_button, .blockchain_button:active, .blockchain_button:focus{
+    background-color: var(--color);
+    border: solid 1px var(--color);
+    color: var(--bg);
+    width: 100%;
+    max-width: 200px;
+}
+.blockchain_button:hover{
+    background-color: transparent;
+    color: var(--color);
+}
+
+/* POPUP */
+.popup_container{
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    padding: var(--padding);
+}
+.popup{
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;    
+    width: 100%;
+    max-width: 320px;
+    background-color: var(--color);
+    border-radius: var(--radius);
+    border: solid 1px var(--color);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.popup.error{
+    background-color: var(--red);
+    border: solid 1px var(--red);
+}
+.popup.success{
+    background-color: var(--green);
+    border: solid 1px var(--green);
+}
+.popup_header{
+    position: relative;
+    z-index: 1;
+    height: 26px;
+    background-color: var(--bg);
+    border-radius: var(--radius) var(--radius) 0px 0px;
+    padding: var(--padding_small) var(--padding);
+}
+.popup.error .popup_header{
+    color: var(--red);
+}
+.popup.success .popup_header{
+    color: var(--green);
+}
+.popup_close{
+    position: absolute;
+    z-index: 1;
+    top: -8px;
+    right: -8px;
+    background-color: var(--color);
+    border: solid 1px var(--color);
+    color: var(--bg);
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+    font-size: 18px;
+    line-height: 16px;
+    text-align: center;
+    cursor: pointer;
+}
+.popup_close:hover{
+    background-color: var(--bg);
+    color: var(--color);
+}
+.popup.error .popup_close{
+    background-color: var(--red);
+    border: solid 1px var(--red);
+}
+.popup.success .popup_close{
+    background-color: var(--green);
+    border: solid 1px var(--green);
+}
+.popup.error .popup_close:hover{
+    background-color: var(--bg);
+    color: var(--red);
+}
+.popup.success .popup_close:hover{
+    background-color: var(--bg);
+    color: var(--green);
+}
+.popup_body{
+    padding: var(--padding);
+    color: var(--bg);    
+}
+
+/* media */
+@media (max-width:1200px) {
+    .blockchain_title{
+        margin: var(--padding) 0px;
+    }
+    .blockchain_left, .blockchain_right{
+        width: 100%;
+    }
+    .blockchain_left{
+        text-align: center;
+    }
+    .blockchain_right{
+        height: calc(100vh - 520px);
+    }
+    .blockchain_box{
+        max-width: 600px;
+    }
+}
+@media (max-width: 960px) and (orientation: landscape){
+    .blockchain_left{
+        width: 40%;
+    }
+    .blockchain_right{
+        width: 60%;
+    }
+    .blockchain_right{
+        height: calc(100vh - 120px);
+    }
+}
