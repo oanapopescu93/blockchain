@@ -11,31 +11,25 @@ cd blockchain
 
 ### Backend Setup
 
-1. Navigate to the backend directory:
-cd backend
+1. Navigate to the backend directory: cd backend
 
-2. Install dependencies:
-npm install
+2. Install dependencies: npm install
 
-3. Start the backend server:
-
-npm run dev  # For development mode
-npm start    # For production mode
-
-The backend will run on http://localhost:3001.
+3. Go back: cd..
 
 ### Frontend Setup
 
-1. Navigate to the frontend directory:
-cd frontend
+1. Navigate to the frontend directory: cd frontend
 
-2. Install dependencies:
-npm install
+2. Install dependencies: npm install
 
-3. Start the React application:
-npm start
+3. Go back: cd..
 
-The frontend will run on http://localhost:3000 and interact with the backend.
+### Webapp Setup
+
+1. Install dependencies: npm install
+
+2. Start project: npm start (for production) or npm run dev (for development)
 
 ## Using the Frontend to Interact with the Blockchain
 
