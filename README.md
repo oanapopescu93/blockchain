@@ -1,6 +1,9 @@
 # Blockchain Project
 This project consists of a blockchain backend and a React frontend that interacts with it. It also supports peer-to-peer (P2P) communication for decentralized interaction.
 
+## Screenshot
+![Image 0](./server/images/00.png)
+
 ## Getting Started
 Clone the Repository
 
