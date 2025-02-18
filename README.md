@@ -53,18 +53,23 @@ npm run dev
 3. When multiple instances are running, they sync blockchain data automatically.
 
 - Start Node 1 (Port 3001, P2P Port 5001)
+
 HTTP_PORT=3001 P2P_PORT=5001 PEERS=ws://localhost:5002,ws://localhost:5003 node index.js
 
 - Start Node 2 (Port 3002, P2P Port 5002)
+
 HTTP_PORT=3002 P2P_PORT=5002 PEERS=ws://localhost:5001,ws://localhost:5003 node index.js
 
 - Start Node 3 (Port 3003, P2P Port 5003)
+
 HTTP_PORT=3003 P2P_PORT=5003 PEERS=ws://localhost:5001,ws://localhost:5002 node index.js
 
 - Mining a New Block
+
 curl -X POST -H "Content-Type: application/json" -d '{"data":"First Transaction"}' http://localhost:3001/mine
 
 - Example response:
+
 {
   "index": 1,
   "timestamp": 1739814983656,
