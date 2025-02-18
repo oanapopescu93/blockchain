@@ -1,22 +1,24 @@
 const crypto = require('crypto')
 
-class Wallet {
-  constructor() {    
-    this.privateKey = crypto.randomBytes(32).toString('hex')
-    this.publicKey = crypto.createHash('sha256').update(this.privateKey).digest('hex')
-    this.balance = 1000
+function Wallet() {
+  let self = this
+  self.privateKey = crypto.randomBytes(32).toString('hex')
+  self.publicKey = crypto.createHash('sha256').update(self.privateKey).digest('hex')
+  self.balance = 1000
+
+  // Sign the transaction with the private key
+  self.signTransaction = function(transaction) {
+    return crypto.createHmac('sha256', self.privateKey).update(transaction.toString()).digest('hex')
   }
-  
-  signTransaction(transaction) {    
-    return crypto.createHmac('sha256', this.privateKey).update(transaction.toString()).digest('hex')
+
+  // Check if the wallet has enough balance
+  self.hasEnoughBalance = function(amount) {
+    return self.balance >= amount
   }
-  
-  hasEnoughBalance(amount) {
-    return this.balance >= amount
-  }
-  
-  updateBalance(amount) {
-    this.balance += amount
+
+  // Update the wallet balance
+  self.updateBalance = function(amount) {
+    self.balance += amount
   }
 }
 

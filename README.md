@@ -2,7 +2,7 @@
 This project consists of a blockchain backend and a React frontend that interacts with it. It also supports peer-to-peer (P2P) communication for decentralized interaction.
 
 ## Screenshot
-![Image 0](./server/images/00.png)
+![Image 0](./images/00.png)
 
 ## Getting Started
 Clone the Repository
@@ -47,7 +47,7 @@ cd blockchain
 2. To start a new node and connect to existing nodes:
 npm run dev
 
-3. When multiple instances are running, they sync blockchain data automatically.
+3. When multiple instances are running, they sync blockchain data automatically (go to cd backend for this test).
 
 - Start Node 1 (Port 3001, P2P Port 5001)
 

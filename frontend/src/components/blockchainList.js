@@ -3,6 +3,7 @@ import { formatDate } from "../utils/utils"
 
 function BlockchainList(props) {
     const { blocks } = props
+    console.log(blocks)
 
     return <div className="blockchain_right">
     {blocks.length > 0 ? <>

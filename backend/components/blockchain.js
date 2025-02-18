@@ -2,43 +2,47 @@ const { Transaction } = require('./transactions')
 const { Wallet } = require('./wallet')
 const { Block } = require("./block")
 
-class Blockchain {
-  constructor() {
-    this.chain = [this.createGenesisBlock()];
-    this.difficulty = 4 // Difficulty for Proof of Work
-    this.wallets = {}
-  }
+function Blockchain() {
+  let self = this  
+  self.difficulty = 4 // Difficulty for Proof of Work
+  self.wallets = {}
 
-  createGenesisBlock() {
+  // Create Genesis Block
+  self.createGenesisBlock = function() {
     return new Block(0, Date.now(), 0, "Genesis Block")
   }
 
-  getLatestBlock() {
-    return this.chain[this.chain.length - 1]
+  self.chain = [self.createGenesisBlock()]
+
+  // Get the latest block in the chain
+  self.getLatestBlock = function() {
+    return self.chain[self.chain.length - 1]
   }
 
-  addBlock(newBlock) {
-    newBlock.previousHash = this.getLatestBlock().hash
-    newBlock.timestamp = Date.now()
-    newBlock.mineBlock(this.difficulty)
-    this.chain.push(newBlock)
+  // Add a new block to the blockchain
+  self.addBlock = function(newBlock) {
+    newBlock.mineBlock(self.difficulty)
+    newBlock.previousHash = self.getLatestBlock().hash
+    newBlock.timestamp = Date.now()    
+    self.chain.push(newBlock)
   }
-  
-  createWallet() {
+
+  // Create a new wallet
+  self.createWallet = function() {
     const wallet = new Wallet()
-    this.wallets[wallet.publicKey] = wallet
+    self.wallets[wallet.publicKey] = wallet
     return wallet
   }
 
   // Create a transaction and add it to the block
-  createTransaction(senderWallet, recipient, amount) {    
+  self.createTransaction = function(senderWallet, recipient, amount) {
     if (senderWallet.hasEnoughBalance(amount)) {
       const transaction = new Transaction(senderWallet, recipient, amount)
       senderWallet.updateBalance(-amount)
-      if (!this.wallets[recipient]) {
-        this.wallets[recipient] = new Wallet() // Create wallet for recipient if not exists
+      if (!self.wallets[recipient]) {
+        self.wallets[recipient] = new Wallet() // Create wallet for recipient if not exists
       }
-      this.wallets[recipient].updateBalance(amount)
+      self.wallets[recipient].updateBalance(amount)
       return transaction
     } else {
       console.log("Insufficient balance")
@@ -47,10 +51,10 @@ class Blockchain {
   }
 
   // Validate the blockchain integrity
-  isChainValid() {
-    for (let i = 1; i < this.chain.length; i++) {
-      const currentBlock = this.chain[i]
-      const previousBlock = this.chain[i - 1]
+  self.isChainValid = function() {
+    for (let i = 1; i < self.chain.length; i++) {
+      const currentBlock = self.chain[i]
+      const previousBlock = self.chain[i - 1]
 
       // Check if the current block's hash is still valid
       if (currentBlock.hash !== currentBlock.calculateHash()) {

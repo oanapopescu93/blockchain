@@ -40,8 +40,7 @@ function BlockchainControls(props) {
           if (data.error) {            
             updatePopup({template: "error", text: data.error})
           } else {
-            setTransaction({ sender: "", recipient: "", amount: 0 })
-            alert("Transaction successful")
+            setTransaction({ sender: "", recipient: "", amount: 0 })            
             updatePopup({template: "success", text: "Transaction successful"})
           }
         } catch (err) {          

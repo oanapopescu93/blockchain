@@ -38,7 +38,7 @@ app.post("/mine", (req, res) => {
   )
 
   blockchain.addBlock(newBlock)
-  broadcastLatestBlock()
+  broadcastLatestBlock(blockchain)
   console.log("Block added: ", req.body, JSON.stringify(newBlock))
   res.send(newBlock)
 })
@@ -63,6 +63,7 @@ app.post("/transaction", (req, res) => {
       latestBlock.addTransaction(transaction)
       // Broadcast the new transaction to peers
       broadcastTransaction(transaction)
+      console.log('transaction ',transaction)
       res.json(transaction)
     } else {
       res.status(400).json({ error: "Transaction failed" })
@@ -108,33 +109,15 @@ const sendBlockchain = (ws) => {
 // Handle incoming messages
 const handleBlockchainMessage = (ws, message) => {
   const msg = JSON.parse(message)
-  if (msg.type === "BLOCKCHAIN") {
-    replaceBlockchain(msg.data)
-  } else if (msg.type === "NEW_BLOCK") {
-    blockchain.addBlock(msg.data)
-    console.log('New block added:', msg.data)
-  } else if (msg.type === "NEW_TRANSACTION") {
-    // Add new transaction to the latest block
-    const latestBlock = blockchain.getLatestBlock()
-    latestBlock.addTransaction(msg.data)
-    console.log('New transaction added:', msg.data)
-  }
-}
-
-// Replace blockchain if needed
-const replaceBlockchain = (newChain) => {
-  if (newChain.length > blockchain.chain.length && blockchain.isChainValid(newChain)) {
-    console.log("Replacing blockchain with a longer valid chain")
-    blockchain.chain = newChain
-  }
+  console.log(msg)
 }
 
 // Broadcast the latest block to all nodes
-const broadcastLatestBlock = () => {
+const broadcastLatestBlock = (blockchain) => {
   const latestBlock = blockchain.getLatestBlock()
   sockets.forEach((socket) => {
     socket.send(JSON.stringify({ type: "NEW_BLOCK", data: latestBlock }))
-  })
+  }) 
 }
 
 // Broadcast a new transaction to all peers
